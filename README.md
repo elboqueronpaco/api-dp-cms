@@ -9,6 +9,13 @@ nest g mo [nombre_module]
 
 ```
 
+## General controller
+
+```js
+nest g co [nombre_controller] --no-spec
+
+```
+
 - Author - digitalpaco
 
 
