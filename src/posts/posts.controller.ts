@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreatePostDto, EditPostDto } from './dtos';
 import { PostsService } from './posts.service';
 
+@ApiTags('Posts')
 @Controller('posts')
 export class PostsController {
     constructor(private readonly postsService: PostsService) {}
