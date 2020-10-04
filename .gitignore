@@ -32,3 +32,7 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.mysql-data/db/auto.cnf
+.mysql-data/db/ib_logfile0
+.mysql-data/db/ib_logfile1
+.mysql-data/db/ibdata1

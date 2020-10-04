@@ -1,35 +1,39 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CreatePostDto, EditPostDto } from './dtos';
+import { PostsService } from './posts.service';
 
 @Controller('posts')
 export class PostsController {
+    constructor(private readonly postsService: PostsService) {}
     /** Para obtener todos posts */
     @Get()
-    getAll() {
-        return 'OK'
+    async getAll() {
+        const data= await this.postsService.getAll()
+        return { data}
     }
 
     /**
      * obtener por id
      */
     @Get(':id')
-    getOne (
+    async getOne (
         @Param('id', ParseIntPipe) id: number
     ) {
-        //console.info(typeof id)
+        const data = await this.postsService.getOne(id)
         return {
-            message: 'getOneById'
+           data 
         }
     }
     /**
      * Crear posts
      */
     @Post()
-    CreateOne(
+     async CreateOne(
         @Body() dto: CreatePostDto
     ) {
+        const data = await this.postsService.createOne(dto)
         return {
-            message: 'Has creado un post',
+            message: 'Se ha creado nuevo Post',
             dto
         }
     }
@@ -38,24 +42,27 @@ export class PostsController {
      * update posts por id
      */
     @Put(':id')
-    editOne(
-        @Param('id') id: number,
+    async editOne(
+        @Param('id', ParseIntPipe) id: number,
         @Body() dto: EditPostDto
     ) {
+        const data = await this.postsService.editOne(id, dto)
         return {
-            message: 'Se ha actualizado el post',
-            dto
+            message: 'Post ha sido actualizado',
+            data
         }
     }
     /**
      * Eliminar un Post por su id
      */
     @Delete(':id')
-    deleteOne(
+    async deleteOne(
         @Param('id', ParseIntPipe) id: number
     ) {
+        const data = await this.postsService.deleteOne(id)
         return {
-            message: 'Post ha sido eliminado'
+            message: 'Post Ha sido eliminado',
+            data
         }
     }
 }

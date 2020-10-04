@@ -16,6 +16,14 @@ nest g co [nombre_controller] --no-spec
 
 ```
 
+## General service
+
+```js
+nest g s [nombre_controller] --no-spec
+
+```
+
+
 - Author - digitalpaco
 
 
