@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 
 @Entity('posts')
 export class Post {
@@ -49,4 +49,7 @@ export class Post {
         type: 'timestamp'
     })
     createAt: Date
+
+    @UpdateDateColumn({ name: 'updated_at', type:'timestamp'})
+    updatedAt: Date
 }

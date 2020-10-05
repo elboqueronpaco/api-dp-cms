@@ -36,7 +36,7 @@ export class PostsController {
         const data = await this.postsService.createOne(dto)
         return {
             message: 'Se ha creado nuevo Post',
-            dto
+            data
         }
     }
 

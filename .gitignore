@@ -36,3 +36,4 @@ lerna-debug.log*
 .mysql-data/db/ib_logfile0
 .mysql-data/db/ib_logfile1
 .mysql-data/db/ibdata1
+.env
