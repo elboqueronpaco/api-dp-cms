@@ -5,6 +5,10 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dtos';
 import { User } from './entities';
 
+export interface UserFindOne {
+    id?: number
+    email?: string
+}
 @Injectable()
 export class UserService {
     constructor(
@@ -34,7 +38,7 @@ export class UserService {
      * CreateOne
      * creando un nuevo usuario
      */
-    
+
     async createOne(dto: CreateUserDto) {
         const userExist = await this.userRepository.findOne({ email: dto.email})
         if (userExist) throw new BadRequestException('Este email ya existe')
@@ -55,6 +59,18 @@ export class UserService {
          const user = await this.getOne(id)
          const editUser = Object.assign(user, dto)
          return await this.userRepository.save(editUser)
+     }
+     /**
+      * 
+      * findByEmail
+      * buscar por email
+      */
+     async findByEmail(data: UserFindOne){
+        return await this.userRepository
+          .createQueryBuilder('user')
+          .where(data )
+          .addSelect('user.password')
+          .getOne()
      }
 
      /**
